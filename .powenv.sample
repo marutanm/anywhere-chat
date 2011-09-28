@@ -1,0 +1,3 @@
+export APP_ID='app_id'
+export KEY='key'
+export SECRET='secret'
