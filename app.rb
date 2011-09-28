@@ -1,8 +1,8 @@
 # coding: utf-8
 
-Pusher.app_id = ENV['APP_ID']
-Pusher.key = ENV['KEY']
-Pusher.secret = ENV['SECRET']
+Pusher.app_id ||= ENV['APP_ID']
+Pusher.key ||= ENV['KEY']
+Pusher.secret ||= ENV['SECRET']
 
 helpers do
   include Rack::Utils
