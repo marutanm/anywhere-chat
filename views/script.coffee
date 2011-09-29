@@ -9,19 +9,18 @@ channel.bind('my_event', (data) ->
       top: data.top+'px'
       left: data.left+'px'
       )
-    .prependTo('#content')
-  $('#form').hide().val('')
+    .appendTo('#content')
+  $('#form')
 )
 
 $ ->
   $('#form')
   .keypress (e) ->
     if ((e.which and e.which is 13) or (e.keyCode and e.keyCode is 13))
-      $.ajax '',
-        type: 'post'
-        data:
-          'text': $('#form').val()
-          'top': @offsetTop
-          'left': @offsetLeft
+      $.post '/',
+        'text': $('#form').val()
+        'top': @offsetTop
+        'left': @offsetLeft
+        => $(@).hide().val('')
   $(document).click (e) -> $('#form').css(left: e.clientX, top: e.clientY).show().focus()
 
