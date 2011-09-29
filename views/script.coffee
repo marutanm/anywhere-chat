@@ -1,5 +1,5 @@
 Pusher.log = (message) ->
-  window.console.log(message)
+  console.log(message)
 
 channel = pusher.subscribe('test_channel');
 channel.bind('my_event', (data) -> 
