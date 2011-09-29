@@ -5,6 +5,8 @@
   %link{:rel => "stylesheet", :href => "/styles.css"}
   %script{:src => "http://js.pusherapp.com/1.9/pusher.min.js"}
   %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"}
+  :javascript
+    var pusher = new Pusher("#{Pusher.key}");
   %script{:src => "/script.js"}
 %body
   %input#form{:type => "text"}
