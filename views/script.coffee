@@ -8,14 +8,13 @@ channel.bind('my_event', (data) ->
     .css(
       top: data.top+'px'
       left: data.left+'px'
-      )
+    )
     .appendTo('#content')
   $('#form')
 )
 
 $ ->
-  $('#form')
-  .keypress (e) ->
+  $('#form').keypress (e) ->
     if ((e.which and e.which is 13) or (e.keyCode and e.keyCode is 13))
       $.post '/',
         'text': $('#form').val()
