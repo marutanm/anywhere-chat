@@ -21,5 +21,15 @@ $ ->
         'top': @offsetTop
         'left': @offsetLeft
         => $(@).hide().val('')
+
   $(document).click (e) -> $('#form').css(left: e.clientX, top: e.clientY).show().focus()
 
+  $.getJSON '/log',
+    (data) -> 
+      $('<div/>')
+        .text(data.text)
+        .css(
+          top: data.top+'px'
+          left: data.left+'px'
+        )
+        .appendTo('#content')

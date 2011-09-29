@@ -4,6 +4,11 @@ Pusher.app_id ||= ENV['APP_ID']
 Pusher.key ||= ENV['KEY']
 Pusher.secret ||= ENV['SECRET']
 
+configure do
+  uri = URI.parse(ENV["REDISTOGO_URL"])
+  REDIS = Redis.new(:host => uri.host, :port => uri.port)
+end
+
 helpers do
   include Rack::Utils
   alias_method :h, :escape_html
@@ -23,5 +28,10 @@ get '/' do
 end
 
 post '/' do
+  REDIS.set(:key, params.to_json)
   Pusher['test_channel'].trigger('my_event', params)
+end
+
+get '/log' do
+  REDIS.get(:key)
 end
