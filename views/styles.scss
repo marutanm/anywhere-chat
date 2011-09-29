@@ -3,8 +3,11 @@ body {
   color: #666;
 }
 
-#main {
-  h1 {
-    color: #000;
-  }
+div {
+  position: fixed;
+}
+
+#form {
+  position: fixed;
+  display: none;
 }

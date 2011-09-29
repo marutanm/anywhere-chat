@@ -6,7 +6,6 @@ channel.bind('my_event', (data) ->
   $('<div/>')
     .text(data.text)
     .css(
-      position: 'fixed'
       top: data.top+'px'
       left: data.left+'px'
       )
@@ -16,7 +15,6 @@ channel.bind('my_event', (data) ->
 
 $ ->
   $('#form')
-  .css(position: 'fixed', display: 'none')
   .keypress (e) ->
     if ((e.which and e.which is 13) or (e.keyCode and e.keyCode is 13))
       $.ajax '',
