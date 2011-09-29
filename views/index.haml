@@ -6,6 +6,7 @@
   %script{:src => "http://js.pusherapp.com/1.9/pusher.min.js"}
   %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"}
   :javascript
+    var rack_env = "#{ENV['RACK_ENV']}"
     var pusher = new Pusher("#{Pusher.key}");
   %script{:src => "/script.js"}
 %body

@@ -1,5 +1,5 @@
-Pusher.log = (message) ->
-  console.log(message)
+if rack_env isnt 'production'
+  Pusher.log = (message) -> console.log(message)
 
 channel = pusher.subscribe('test_channel');
 channel.bind('my_event', (data) -> 
