@@ -1,17 +1,17 @@
 if rack_env isnt 'production'
   Pusher.log = (message) -> console.log(message)
 
-channel = pusher.subscribe('test_channel');
-channel.bind('my_event', (data) -> 
+addDiv = (data) ->
   $('<div/>')
     .text(data.text)
     .css(
-      top: data.top+'px'
-      left: data.left+'px'
+      top: data.top + 'px'
+      left: data.left + 'px'
     )
     .appendTo('#content')
-  $('#form')
-)
+
+channel = pusher.subscribe('test_channel');
+channel.bind('my_event', (data) -> addDiv(data))
 
 $ ->
   $('#form').keypress (e) ->
@@ -24,12 +24,4 @@ $ ->
 
   $(document).click (e) -> $('#form').css(left: e.clientX, top: e.clientY).show().focus()
 
-  $.getJSON '/log',
-    (data) -> 
-      $('<div/>')
-        .text(data.text)
-        .css(
-          top: data.top+'px'
-          left: data.left+'px'
-        )
-        .appendTo('#content')
+  $.getJSON '/log', (data) -> addDiv(data)
