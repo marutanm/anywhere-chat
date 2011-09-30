@@ -28,10 +28,10 @@ get '/' do
 end
 
 post '/' do
-  REDIS.set(:key, params.to_json)
+  REDIS.lpush(:key, params.to_json)
   Pusher['test_channel'].trigger('my_event', params)
 end
 
 get '/log' do
-  REDIS.get(:key)
+  REDIS.lrange(:key, 0, 99).to_json
 end
