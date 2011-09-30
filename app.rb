@@ -24,14 +24,11 @@ get '/script.js' do
 end
 
 get '/' do
+  return REDIS.lrange(:key, 0, 99).to_json if request.xhr?
   haml :index
 end
 
 post '/' do
   REDIS.lpush(:key, params.to_json)
   Pusher['test_channel'].trigger('my_event', params)
-end
-
-get '/log' do
-  REDIS.lrange(:key, 0, 99).to_json
 end

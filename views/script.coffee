@@ -24,5 +24,5 @@ $ ->
 
   $(document).click (e) -> $('#form').css(left: e.clientX, top: e.clientY).show().focus()
 
-  $.getJSON '/log',
+  $.getJSON '/',
     (json) -> addDiv(JSON.parse(data)) for data in json
